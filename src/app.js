@@ -1,6 +1,6 @@
 const express = require('express');
-const { join } = require('path');
 const exphbs = require('express-handlebars');
+const { join } = require('path');
 const cookieParser = require('cookie-parser');
 const router = require('./controlles');
 
@@ -19,6 +19,7 @@ app.set('view engine', 'hbs');
 app.engine(
   'hbs',
   exphbs({
+    extname: 'hbs',
     layoutsDir: join(__dirname, 'views', 'layouts'),
     partialsDir: join(__dirname, 'views', 'partials'),
     defaultLayout: 'main',
