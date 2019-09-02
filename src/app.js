@@ -1,29 +1,29 @@
-const express = require('express');
-const exphbs = require('express-handlebars');
-const { join } = require('path');
-const cookieParser = require('cookie-parser');
-const router = require('./controlles');
-
+const express = require("express");
+const exphbs = require("express-handlebars");
+const { join } = require("path");
+const cookieParser = require("cookie-parser");
+const router = require("./controlles");
+require("env2")("config.env");
 const app = express();
 
 const port = process.env.PORT || 5000;
-app.set('port', port);
+app.set("port", port);
 
 app.use(cookieParser());
-app.use(express.static(join(__dirname, '..', 'public')));
+app.use(express.static(join(__dirname, "..", "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.set('views', join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set("views", join(__dirname, "views"));
+app.set("view engine", "hbs");
 app.engine(
-  'hbs',
+  "hbs",
   exphbs({
-    extname: 'hbs',
-    layoutsDir: join(__dirname, 'views', 'layouts'),
-    partialsDir: join(__dirname, 'views', 'partials'),
-    defaultLayout: 'main',
-  }),
+    extname: "hbs",
+    layoutsDir: join(__dirname, "views", "layouts"),
+    partialsDir: join(__dirname, "views", "partials"),
+    defaultLayout: "main"
+  })
 );
 app.use(router);
 module.exports = app;
